@@ -1,0 +1,89 @@
+#include<graphics.h>
+#include<cmath>
+#include <ctime>
+#include<iostream>
+using namespace std;
+#define PI 3.142857
+
+main()
+{
+	
+	initwindow(800,800,"ANALOG CLOCK");
+	int page=0;
+	while(1)
+	{
+		setactivepage(page);
+		setvisualpage(1-page);
+		cleardevice();
+		setcolor(8);
+	
+	circle(400,400,209);
+	circle(400,400,210);
+	circle(400,400,211);
+	circle(400,400,212);
+	circle(400,400,213);
+	circle(400,400,214);
+	
+
+	
+		setcolor(6);
+		circle(400,400,1);
+		circle(400,400,2);
+		circle(400,400,3);
+		circle(400,400,4);
+		circle(400,400,5);
+	
+		setcolor(6);
+		settextstyle(10, 0, 2); 
+	
+		outtextxy(400+185*sin(PI/6)-5, 400-185*cos(PI/6),"1");
+		outtextxy(400+185*sin(2*PI/6)-5, 400-185*cos(2*PI/6),"2");
+		outtextxy(400+185*sin(3*PI/6)-5, 400-185*cos(3*PI/6),"3");
+		outtextxy(400+185*sin(4*PI/6)-5, 400-185*cos(4*PI/6),"4");
+		outtextxy(400+185*sin(5*PI/6)-5, 400-185*cos(5*PI/6),"5");
+		outtextxy(400+185*sin(6*PI/6)-5, 400-185*cos(6*PI/6),"6");
+		outtextxy(400+185*sin(7*PI/6)-5, 400-185*cos(7*PI/6),"7");
+		outtextxy(400+185*sin(8*PI/6)-5, 400-185*cos(8*PI/6),"8");
+		outtextxy(400+185*sin(9*PI/6)-10, 400-185*cos(9*PI/6),"9");
+		outtextxy(400+185*sin(10*PI/6)-10, 400-185*cos(10*PI/6),"10");
+		outtextxy(400+185*sin(11*PI/6)-10, 400-185*cos(11*PI/6),"11");
+		outtextxy(400+185*sin(12*PI/6)-5, 400-180*cos(12*PI/6),"12");
+		settextstyle(8,0,3);
+		setcolor(4);
+		outtextxy(290,410,"Designed by:Ayushi");
+	
+		time_t now = time(0);
+		tm *ltm =localtime(&now);
+		system("cls");
+		std::cout<<ltm->tm_hour <<": "<< ltm->tm_min;
+		settextstyle(10,0,7);
+		setcolor(6);
+	
+			outtextxy(170,100,"ANALOG CLOCK");
+		
+	
+		setcolor(CYAN);
+		setlinestyle(0,0,4);
+		line(400,400,400+150*sin(ltm->tm_hour *PI/6),400-150*cos(ltm->tm_hour*PI/6));
+		
+		setcolor(GREEN);
+		setlinestyle(0,0,3);
+		line(400,400,400+180*sin(ltm->tm_min *PI/30), 400-180*cos(ltm->tm_min *PI/30));
+		
+		setcolor(6);
+		setlinestyle(0,0,1);
+			line(400,400,400+180*sin(ltm->tm_sec*PI/30),400-180*cos(ltm->tm_sec*PI/30));
+			
+			  if(GetAsyncKeyState(VK_RETURN))
+              break;
+         delay(10);
+         
+         page = 1-page;
+     }
+			
+		
+		
+	closegraph();
+	return 0;
+
+}
